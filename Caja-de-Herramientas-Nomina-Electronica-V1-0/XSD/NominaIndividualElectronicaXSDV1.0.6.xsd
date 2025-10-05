@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Version #1.0.6-->
+<xsd:schema xmlns="dian:gov:co:facturaelectronica:NominaIndividual"
+            xmlns:xades141="http://uri.etsi.org/01903/v1.4.1#"
+            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+            xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"
+            xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="dian:gov:co:facturaelectronica:NominaIndividual"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            version="2020">
+	<xsd:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+	            schemaLocation="../common/UBL-CommonExtensionComponents-2.1.xsd"/>
+	<!-- ===== Element Declarations ===== -->
+	<xsd:element name="NominaIndividual"
+	             type="NominaIndividualType">
+		<xsd:annotation>
+			<xsd:documentation>This element MUST be conveyed as the root element in any instance document based on this Schema expression</xsd:documentation>
+			<xsd:documentation>Este elemento DEBE transportarse como el elemento raíz en cualquier documento de instancia basado en esta expresión de esquema</xsd:documentation>
+			<xsd:documentation>Este esquema de información acerca de la "nómina de sueldos" o "nómina de empleados" o "pay-roll" ha sido construido siguiendo las prácticas que para este tipo de información utiliza el SAT de la República Mexicana. </xsd:documentation>
+			<xsd:documentation>Se está utilizando el método de firma digital XAdES - EPES, ya conocido por los contribuyentes de la DIAN en Colombia.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<!-- ===== Type Definitions ===== -->
+	<!-- ===== Aggregate Business Information Entity Type Definitions ===== -->
+	<xsd:complexType name="NominaIndividualType">
+		<xsd:sequence>
+			<xsd:element ref="ext:UBLExtensions"
+			             minOccurs="0"
+			             maxOccurs="1"/>
+			<xsd:element name="Novedad"
+			             minOccurs="0"
+			             maxOccurs="1" >
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:boolean">
+							<xsd:attribute name="CUNENov"
+							               type="xsd:string"
+							               use="required" />
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Periodo"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="FechaIngreso"
+					               type="xsd:date"
+					               use="required" />
+					<xsd:attribute name="FechaRetiro"
+					               type="xsd:date" />
+					<xsd:attribute name="FechaLiquidacionInicio"
+					               type="xsd:date"
+					               use="required" />
+					<xsd:attribute name="FechaLiquidacionFin"
+					               type="xsd:date"
+					               use="required" />
+					<xsd:attribute name="TiempoLaborado"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="FechaGen"
+					               type="xsd:date"
+					               use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="NumeroSecuenciaXML"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="CodigoTrabajador"
+					               type="xsd:string" />
+					<xsd:attribute name="Prefijo"
+					               type="xsd:string" />
+					<xsd:attribute name="Consecutivo"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="Numero"
+					               type="xsd:string"
+					               use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="LugarGeneracionXML"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="Pais"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="DepartamentoEstado"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="MunicipioCiudad"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="Idioma"
+					               type="xsd:string"
+					               use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ProveedorXML"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="RazonSocial"
+					               type="xsd:string" />
+					<xsd:attribute name="PrimerApellido"
+					               type="xsd:string"/>
+					<xsd:attribute name="SegundoApellido"
+					               type="xsd:string" />
+					<xsd:attribute name="PrimerNombre"
+					               type="xsd:string" />
+					<xsd:attribute name="OtrosNombres"
+					               type="xsd:string" />
+					<xsd:attribute name="NIT"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="DV"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="SoftwareID"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="SoftwareSC"
+					               type="xsd:string"
+					               use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CodigoQR"
+			             type="xsd:string"
+			             minOccurs="1"
+			             maxOccurs="1" />
+			<xsd:element name="InformacionGeneral"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="Version"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="Ambiente"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="TipoXML"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="CUNE"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="EncripCUNE"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="FechaGen"
+					               type="xsd:date"
+					               use="required" />
+					<xsd:attribute name="HoraGen"
+					               type="xsd:time"
+					               use="required" />
+					<xsd:attribute name="PeriodoNomina"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="TipoMoneda"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="TRM"
+					               type="xsd:decimal"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Notas"
+			             type="xsd:string"
+			             minOccurs="0"
+			             maxOccurs="unbounded" />
+			<xsd:element name="Empleador"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="RazonSocial"
+					               type="xsd:string" />
+					<xsd:attribute name="PrimerApellido"
+					               type="xsd:string"/>
+					<xsd:attribute name="SegundoApellido"
+					               type="xsd:string" />
+					<xsd:attribute name="PrimerNombre"
+					               type="xsd:string" />
+					<xsd:attribute name="OtrosNombres"
+					               type="xsd:string" />
+					<xsd:attribute name="NIT"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="DV"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="Pais"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="DepartamentoEstado"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="MunicipioCiudad"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="Direccion"
+					               type="xsd:string"
+					               use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Trabajador"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="TipoTrabajador"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="SubTipoTrabajador"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="AltoRiesgoPension"
+					               type="xsd:boolean"
+					               use="required" />
+					<xsd:attribute name="TipoDocumento"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="NumeroDocumento"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="PrimerApellido"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="SegundoApellido"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="PrimerNombre"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="OtrosNombres"
+					               type="xsd:string" />
+					<xsd:attribute name="LugarTrabajoPais"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="LugarTrabajoDepartamentoEstado"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="LugarTrabajoMunicipioCiudad"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="LugarTrabajoDireccion"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="SalarioIntegral"
+					               type="xsd:boolean"
+					               use="required" />
+					<xsd:attribute name="TipoContrato"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="Sueldo"
+					               type="xsd:decimal"
+					               use="required" />
+					<xsd:attribute name="CodigoTrabajador"
+					               type="xsd:string" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Pago"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="Forma"
+					               type="xsd:integer"
+					               use="required" />
+					<xsd:attribute name="Metodo"
+					               type="xsd:string"
+					               use="required" />
+					<xsd:attribute name="Banco"
+					               type="xsd:string" />
+					<xsd:attribute name="TipoCuenta"
+					               type="xsd:string" />
+					<xsd:attribute name="NumeroCuenta"
+					               type="xsd:string" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FechasPagos"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="FechaPago"
+						             type="xsd:date"
+						             minOccurs="1"
+						             maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Devengados"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Basico"
+						             minOccurs="1"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="DiasTrabajados"
+								               type="xsd:integer"
+								               use="required" />
+								<xsd:attribute name="SueldoTrabajado"
+								               type="xsd:decimal"
+								               use="required" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Transporte"
+						             minOccurs="0"
+						             maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="AuxilioTransporte"
+								               type="xsd:decimal" />
+								<xsd:attribute name="ViaticoManuAlojS"
+								               type="xsd:decimal" />
+								<xsd:attribute name="ViaticoManuAlojNS"
+								               type="xsd:decimal" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HEDs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HED"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HENs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HEN"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HRNs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HRN"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HEDDFs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HEDDF"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HRDDFs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HRDDF"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HENDFs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HENDF"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HRNDFs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HRNDF"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="HoraInicio"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="HoraFin"
+											               type="xsd:dateTime"/>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Vacaciones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="VacacionesComunes"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="VacacionesCompensadas"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Primas"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="Cantidad"
+								               type="xsd:integer"
+								               use="required" />
+								<xsd:attribute name="Pago"
+								               type="xsd:decimal"
+								               use="required" />
+								<xsd:attribute name="PagoNS"
+								               type="xsd:decimal" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Cesantias"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="Pago"
+								               type="xsd:decimal"
+								               use="required" />
+								<xsd:attribute name="Porcentaje"
+								               type="xsd:decimal"
+								               use="required" />
+								<xsd:attribute name="PagoIntereses"
+								               type="xsd:decimal"
+								               use="required" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Incapacidades"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Incapacidad"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Tipo"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Licencias"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="LicenciaMP"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="LicenciaR"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+											<xsd:attribute name="Pago"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="LicenciaNR"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Bonificaciones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Bonificacion"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="BonificacionS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="BonificacionNS"
+											               type="xsd:decimal" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Auxilios"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Auxilio"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="AuxilioS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="AuxilioNS"
+											               type="xsd:decimal" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="HuelgasLegales"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HuelgaLegal"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="FechaInicio"
+											               type="xsd:date" />
+											<xsd:attribute name="FechaFin"
+											               type="xsd:date" />
+											<xsd:attribute name="Cantidad"
+											               type="xsd:integer"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="OtrosConceptos"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="OtroConcepto"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="DescripcionConcepto"
+											               type="xsd:string"
+											               use="required" />
+											<xsd:attribute name="ConceptoS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="ConceptoNS"
+											               type="xsd:decimal" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Compensaciones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Compensacion"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="CompensacionO"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="CompensacionE"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="BonoEPCTVs"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="BonoEPCTV"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="PagoS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="PagoNS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="PagoAlimentacionS"
+											               type="xsd:decimal" />
+											<xsd:attribute name="PagoAlimentacionNS"
+											               type="xsd:decimal" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Comisiones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Comision"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="PagosTerceros"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="PagoTercero"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Anticipos"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Anticipo"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Dotacion"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="ApoyoSost"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Teletrabajo"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="BonifRetiro"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Indemnizacion"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Reintegro"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Deducciones"
+			             minOccurs="1"
+			             maxOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Salud"
+						             minOccurs="1"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="Porcentaje"
+								               type="xsd:decimal"
+								               use="required" />
+								<xsd:attribute name="Deduccion"
+								               type="xsd:decimal"
+								               use="required" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="FondoPension"
+						             minOccurs="1"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="Porcentaje"
+								               type="xsd:decimal"
+								               use="required" />
+								<xsd:attribute name="Deduccion"
+								               type="xsd:decimal"
+								               use="required" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="FondoSP"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:attribute name="Porcentaje"
+								               type="xsd:decimal" />
+								<xsd:attribute name="DeduccionSP"
+								               type="xsd:decimal" />
+								<xsd:attribute name="PorcentajeSub"
+								               type="xsd:decimal" />
+								<xsd:attribute name="DeduccionSub"
+								               type="xsd:decimal" />
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Sindicatos"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Sindicato"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="Porcentaje"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="Deduccion"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Sanciones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Sancion"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="SancionPublic"
+											               type="xsd:decimal"
+											               use="required" />
+											<xsd:attribute name="SancionPriv"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Libranzas"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Libranza"
+									             minOccurs="0"
+									             maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:attribute name="Descripcion"
+											               type="xsd:string"
+											               use="required" />
+											<xsd:attribute name="Deduccion"
+											               type="xsd:decimal"
+											               use="required" />
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="PagosTerceros"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="PagoTercero"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Anticipos"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Anticipo"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="OtrasDeducciones"
+						             minOccurs="0"
+						             maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="OtraDeduccion"
+									             type="xsd:decimal"
+									             minOccurs="0"
+									             maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="PensionVoluntaria"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="RetencionFuente"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="AFC"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Cooperativa"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="EmbargoFiscal"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="PlanComplementarios"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Educacion"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Reintegro"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+						<xsd:element name="Deuda"
+						             type="xsd:decimal"
+						             minOccurs="0"
+						             maxOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Redondeo"
+			             type="xsd:decimal"
+			             minOccurs="0"
+			             maxOccurs="1" />
+			<xsd:element name="DevengadosTotal"
+			             type="xsd:decimal"
+			             minOccurs="1"
+			             maxOccurs="1" />
+			<xsd:element name="DeduccionesTotal"
+			             type="xsd:decimal"
+			             minOccurs="1"
+			             maxOccurs="1" />
+			<xsd:element name="ComprobanteTotal"
+			             type="xsd:decimal"
+			             minOccurs="1"
+			             maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="SchemaLocation"
+		               type="xsd:string"
+		               use="required" />
+	</xsd:complexType>
+</xsd:schema>
