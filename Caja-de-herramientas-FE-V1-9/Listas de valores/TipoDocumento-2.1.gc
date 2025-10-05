@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DIAN Genericode listas de valores: Ultima modificación 03-04-2022 - wcbr-->
+<gc:CodeList xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+	<Identification>
+		<ShortName>TipoDocumento</ShortName>
+		<LongName xml:lang="es">Tipo de Documento</LongName>
+		<Version>1</Version>
+		<CanonicalUri>urn:dian:names:especificacion:ubl:listacodigos:gc:TipoDocumento</CanonicalUri>
+		<CanonicalVersionUri>urn:dian:names:especificacion:ubl:listacodigos:gc:TipoDocumento-2.1</CanonicalVersionUri>
+		<LocationUri>http://dian.gov.co/ubl/os-ubl-2.0/cl/gc/default/TipoDocumento-2.1.gc</LocationUri>
+		<Agency>
+			<LongName xml:lang="es">DIAN (Dirección de Impuestos y Aduanas Nacionales)</LongName>
+			<Identifier>195</Identifier>
+		</Agency>
+	</Identification>
+	<ColumnSet>
+		<Column Id="code" Use="required">
+			<ShortName>Code</ShortName>
+			<LongName xml:lang="es">Codigo Comun</LongName>
+			<Data Type="normalizedString"/>
+		</Column>
+		<Column Id="name" Use="required">
+			<ShortName>Name</ShortName>
+			<LongName xml:lang="es">Nombre</LongName>
+			<Data Type="string"/>
+		</Column>
+		<Key Id="codeKey">
+			<ShortName>CodeKey</ShortName>
+			<ColumnRef Ref="code"/>
+		</Key>
+	</ColumnSet>
+	<SimpleCodeList>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>01</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Factura electrónica de Venta</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Tipos de factura</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>02</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Factura electrónica de venta con propósito de exportación</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Tipos de factura</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>03</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Factura de talonario o papel con numeración de contingencia.</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Tipos de factura</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>04</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Factura electrónica de Venta  por Contingencia DIAN</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Tipos de factura</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>91</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Nota Crédito</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Exclusivo en referencias a documentos (elementos DocumentReference)</SimpleValue>
+			</Value>
+		</Row>
+		<Row>
+			<Value ColumnRef="code">
+				<SimpleValue>92</SimpleValue>
+			</Value>
+			<Value ColumnRef="name">
+				<SimpleValue>Nota Débito</SimpleValue>
+			</Value>
+			<Value ColumnRef="description">
+				<SimpleValue>Exclusivo en referencias a documentos (elementos DocumentReference)</SimpleValue>
+			</Value>
+		</Row>
+	</SimpleCodeList>
+</gc:CodeList>

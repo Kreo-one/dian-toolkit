@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+   <Identification>
+      <ShortName>TipoOperacionSalud</ShortName>
+      <LongName xml:lang="es">Tipos de operación Salud</LongName>
+      <Version>1</Version>
+      <CanonicalUri>urn:dian:names:especificacion:ubl:listacodigos:gc:TipoOperacionSalud</CanonicalUri>
+      <CanonicalVersionUri>urn:dian:names:especificacion:ubl:listacodigos:gc:TipoOperacionSalud-2.1</CanonicalVersionUri>
+      <LocationUri>http://dian.gov.co/ubl/os-ubl-2.0/cl/gc/default/TipoOperacionSalud-2.1.gc</LocationUri>
+      <Agency>
+         <LongName xml:lang="es">DIAN (Dirección de Impuestos y Aduanas Nacionales)</LongName>
+         <Identifier>195</Identifier>
+      </Agency>
+   </Identification>
+   <ColumnSet>
+      <Column Id="code" Use="required">
+         <ShortName>Code</ShortName>
+         <Data Type="normalizedString"/>
+      </Column>
+      <Key Id="codeKey">
+         <ShortName>CodeKey</ShortName>
+         <ColumnRef Ref="code"/>
+      </Key>
+   </ColumnSet>
+   <SimpleCodeList>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-CUFE</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-CUDE</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-POS</SimpleValue>
+         </Value>
+      </Row>
+	  <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-SNum</SimpleValue>
+         </Value>
+      </Row>
+	  <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-Recaudo</SimpleValue>
+         </Value>
+      </Row>
+	  <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-Reporte</SimpleValue>
+         </Value>
+      </Row>
+	  <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SS-SinAporte</SimpleValue>
+         </Value>
+      </Row>
+   </SimpleCodeList>
+</gc:CodeList>
